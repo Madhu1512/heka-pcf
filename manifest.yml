@@ -11,3 +11,7 @@ exclude_files:
   - test/
   - buildpack-packager/
   - staticfile_buildpack-*v*.zip
+
+dependencies:
+  - cf_stacks:
+      - cflinuxfs2
