@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-
-#!/usr/bin/env bash
 # bin/compile <build-dir> <cache-dir>
 
 [[ ${SHELL_TRACE} ]] && set -x
