@@ -1,4 +1,5 @@
 ---
 language: heka
 dependencies:
-  - cf_stacks: cflinuxfs2
+  - cf_stacks:
+      - cflinuxfs2
