@@ -1,17 +1,4 @@
 ---
 language: heka
-
-exclude_files:
-  - .git/
-  - .gitignore
-  - .gitmodules
-  - .rspec
-  - cf_spec/
-  - log/
-  - test/
-  - buildpack-packager/
-  - staticfile_buildpack-*v*.zip
-
 dependencies:
-  - cf_stacks:
-      - cflinuxfs2
+  - cf_stacks: cflinuxfs2
