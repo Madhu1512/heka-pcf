@@ -21,11 +21,6 @@ export BUILDPACK_PATH=${BUILDPACK}
 
 source ${BUILDPACK}/compile-extensions/lib/common
 
-if [ ! -d ${CACHE_DIR} ]; then
-  status "Creating ${CACHE_DIR}"
-  mkdir ${CACHE_DIR}
-fi
-
 if [ -f "${CACHE_DIR}/${HEKA_ARCHIVE}" ]; then
   status "Using file from cache: ${HEKA_ARCHIVE}"
 else
