@@ -10,29 +10,29 @@ BUILDPACK=$(cd $(dirname ${0})/..; pwd)
 HEKA_TARGET=${BUILD_DIR}/heka
 CONF_TARGET=${HEKA_TARGET}/conf
 CONF_SRC=${BUILDPACK}/conf
+
+: ${HEKA_VERSION:=0.10.0}
+: ${HEKA_VERSION_UNDERSCORE:=$(echo "${HEKA_VERSION}" | tr '.' '_')}
+
+HEKA_TGZ="/tmp/${HEKA_VERSION}.tgz"
+
+${BUILDPACK}/compile-extensions/bin/check_stack_support
+
 source ${BUILDPACK}/bin/common.sh
 
-HEKA_VERSION=0.10.0
-HEKA_VERSION_UNDERSCORE=$(echo "${HEKA_VERSION}" | tr '.' '_')
-HAPROXY_BIN=heka-${HEKA_VERSION_UNDERSCORE}
-HEKA_ARCHIVE=${HAPROXY_BIN}-linux-amd64.tar.gz
-
+status "Downloading Heka ..."
 export BUILDPACK_PATH=${BUILDPACK}
-
 source ${BUILDPACK}/compile-extensions/lib/common
 
-if [ -f "${CACHE_DIR}/${HEKA_ARCHIVE}" ]; then
-  status "Using file from cache: ${HEKA_ARCHIVE}"
-else
-  status "Downloading Heka Version: ${HEKA_VERSION}"
+[ ! -s "${HEKA_TGZ}" ] && {
   curl --location -s \
-    -o "${CACHE_DIR}/${HEKA_ARCHIVE}" \
+    -o "${HEKA_TGZ}" \
     https://github.com/mozilla-services/heka/releases/download/v${HEKA_VERSION}/heka-${HEKA_VERSION_UNDERSCORE}-linux-amd64.tar.gz
-fi
+}
 
+status "Unpacking Heka ..."
 mkdir -p ${CONF_TARGET} # /Should/ be moot ...
-
-tar xfz ${CACHE_DIR}/${HEKA_ARCHIVE} --strip-components 1 -C ${HEKA_TARGET}
+tar xfz ${HEKA_TGZ} --strip-components 1 -C ${HEKA_TARGET}
 
 status "Configuring Heka ..."
 for SRC in ${CONF_SRC}/*; do
@@ -40,5 +40,6 @@ for SRC in ${CONF_SRC}/*; do
   [[ -r ${TARGET} ]] && cp -n ${SRC} ${TARGET}.overriden-heka-buildpack-default
   [[ -r ${TARGET} ]] || cp    ${SRC} ${TARGET}
 done
-cp -r ${BUILDPACK}/lua_decoders/* ${HEKA_TARGET}/share/heka/lua_decoders/
+
 cp -f ${BUILDPACK}/bin/run.sh ${HEKA_TARGET}/
+cp -r ${BUILDPACK}/lua_decoders/* ${HEKA_TARGET}/share/heka/lua_decoders/
