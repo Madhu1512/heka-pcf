@@ -42,4 +42,3 @@ for SRC in ${CONF_SRC}/*; do
 done
 
 cp -f ${BUILDPACK}/bin/run.sh ${HEKA_TARGET}/
-cp -r ${BUILDPACK}/lua_decoders/* ${HEKA_TARGET}/share/heka/lua_decoders/
