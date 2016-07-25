@@ -16,13 +16,13 @@ CONF_SRC=${BUILDPACK}/conf
 
 HEKA_TGZ="/tmp/${HEKA_VERSION}.tgz"
 
-${BUILDPACK}/compile-extensions/bin/check_stack_support
+#${BUILDPACK}/compile-extensions/bin/check_stack_support
 
 source ${BUILDPACK}/bin/common.sh
 
 status "Downloading Heka ..."
 export BUILDPACK_PATH=${BUILDPACK}
-source ${BUILDPACK}/compile-extensions/lib/common
+#source ${BUILDPACK}/compile-extensions/lib/common
 
 [ ! -s "${HEKA_TGZ}" ] && {
   curl --location -s \

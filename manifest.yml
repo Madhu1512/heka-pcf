@@ -1,4 +1,0 @@
----
-dependencies:
-  - cf_stacks:
-      - cflinuxfs2
