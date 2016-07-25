@@ -43,4 +43,5 @@ for SRC in ${CONF_SRC}/*; do
   [[ -r ${TARGET} ]] && cp -n ${SRC} ${TARGET}.overriden-heka-buildpack-default
   [[ -r ${TARGET} ]] || cp    ${SRC} ${TARGET}
 done
+cp -r ${BUILDPACK}/lua_decoders/* ${HEKA_TARGET}/share/heka/lua_decoders/
 cp -f ${BUILDPACK}/bin/run.sh ${HEKA_TARGET}/
