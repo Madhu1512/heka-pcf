@@ -19,7 +19,7 @@ HEKA_ARCHIVE=${HAPROXY_BIN}-linux-amd64.tar.gz
 
 export BUILDPACK_PATH=${BUILDPACK}
 
-#source ${BUILDPACK}/compile-extensions/lib/common
+source ${BUILDPACK}/compile-extensions/lib/common
 
 if [ ! -d ${CACHE_DIR} ]; then
   status "Creating ${CACHE_DIR}"
