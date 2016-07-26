@@ -1,3 +1,0 @@
-[hekad]
-base_dir = "%ENV[HEKA_BASE_DIR]"
-share_dir = "%ENV[HEKA_SHARE_DIR]"

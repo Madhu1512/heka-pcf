@@ -40,8 +40,8 @@ tar xfz ${CACHE_DIR}/${HEKA_ARCHIVE} --strip-components 1 -C ${HEKA_TARGET}
 status "Configuring Heka ..."
 for SRC in ${CONF_SRC}/*; do
   TARGET="${CONF_TARGET}/$(basename ${SRC})"
-  [[ -r ${TARGET} ]] && cp -n ${SRC} ${TARGET}.overriden-heka-buildpack-default
+  [[ -r ${TARGET} ]] && cp -n ${SRC} ${TARGET}.overriden-heka-pcf-default
   [[ -r ${TARGET} ]] || cp    ${SRC} ${TARGET}
 done
-cp -r ${BUILDPACK}/lua_decoders/* ${HEKA_TARGET}/share/heka/lua_decoders/
+cp -fr ${BUILDPACK}/lua_decoders/* ${HEKA_TARGET}/share/heka/lua_decoders/
 cp -f ${BUILDPACK}/bin/run.sh ${HEKA_TARGET}/

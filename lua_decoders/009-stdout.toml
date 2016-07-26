@@ -1,5 +1,0 @@
-[RstEncoder]
-
-[LogOutput]
-message_matcher = "TRUE"
-encoder = "RstEncoder"
