@@ -12,6 +12,9 @@ CONF_TARGET=${HEKA_TARGET}/conf
 CONF_SRC=${BUILDPACK}/conf
 source ${BUILDPACK}/bin/common.sh
 
+source ${BUILD_DIR}
+source ${CACHE_DIR}
+
 HEKA_VERSION=0.10.0
 HEKA_VERSION_UNDERSCORE=$(echo "${HEKA_VERSION}" | tr '.' '_')
 HEKA_BIN=heka-${HEKA_VERSION_UNDERSCORE}
