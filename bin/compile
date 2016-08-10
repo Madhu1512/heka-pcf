@@ -48,3 +48,8 @@ for SRC in ${CONF_SRC}/*; do
 done
 cp -fr ${BUILDPACK}/lua_decoders/* ${HEKA_TARGET}/share/heka/lua_decoders/
 cp -f ${BUILDPACK}/bin/run.sh ${HEKA_TARGET}/
+
+status ${HEKA_TARGET}
+status "=-=-=-=-=-> Done."
+
+exit 0
