@@ -10,5 +10,5 @@ export APP_ROOT=$HOME
 export HEKA_SHARE_DIR
 export HEKA_BASE_DIR
 export HEKA_MAX_PROCS
-
+echo "${APP_ROOT}"
 exec ${APP_ROOT}/heka/bin/hekad -config="${APP_ROOT}/heka/conf/"
